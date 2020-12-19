@@ -34,10 +34,12 @@ public class SubmissionInitializer {
 	private final static String EXTRA = "stylecheck";
 
 	public static AreteRequestDTO getSubmissionUva() {
+		String hash = "75d1246c855cf0ae21dbf47ed0d9d2e2b3daf212";
 		return AreteRequestDTO.builder()
 				.uniid(UNIID_GIT)
 				.gitStudentRepo(STUDENT_REPO_PYTHON_2020)
 				.testingPlatform("uva")
+				.hash(hash)
 				.systemExtra((new HashSet<>(Arrays.asList("overrideContentRoot", "skipCopyingTests", "noMail", "integration_tests"))))
 				.dockerTestRoot("567")
 				.build();
