@@ -1,0 +1,21 @@
+variables:
+    DOCKER_DRIVER: overlay
+
+stages:
+    - test
+
+
+test:
+    tags:
+        - dev
+        - master
+    image: docker:latest
+    stage: test
+    services:
+        -   name: docker:dind
+    script:
+        - docker-compose -f docker-compose-test.yml build --no-cache arete-test
+        - docker-compose -f docker-compose-test.yml run arete-test
+    only:
+        - dev
+        - master

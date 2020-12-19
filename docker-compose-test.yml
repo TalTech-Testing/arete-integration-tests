@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+
+    arete-test:
+        build:
+            context: .
+        environment:
+            ARETE_TOKEN: ${ARETE_TOKEN}
