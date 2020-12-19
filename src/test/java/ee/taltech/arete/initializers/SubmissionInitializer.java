@@ -38,8 +38,7 @@ public class SubmissionInitializer {
 				.uniid(UNIID_GIT)
 				.gitStudentRepo(STUDENT_REPO_PYTHON_2020)
 				.testingPlatform("uva")
-				.systemExtra((new HashSet<>(Arrays.asList("skipCopying", "noMail", "integration_tests"))))
-				.dockerContentRoot("1027043")
+				.systemExtra((new HashSet<>(Arrays.asList("overrideContentRoot", "skipCopyingTests", "noMail", "integration_tests"))))
 				.dockerTestRoot("567")
 				.build();
 	}
