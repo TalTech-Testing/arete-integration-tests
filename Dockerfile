@@ -10,5 +10,3 @@ RUN dos2unix mvnw
 RUN chmod +x mvnw
 
 ENTRYPOINT [ "sh", "-c", "./mvnw test" ]
-
-EXPOSE 8098:8098

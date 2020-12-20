@@ -2,20 +2,36 @@ variables:
     DOCKER_DRIVER: overlay
 
 stages:
-    - test
+    - build
+    - deploy
 
 
-test:
+build-image:
     tags:
-        - dev
-        - master
+        - tester
     image: docker:latest
-    stage: test
+    stage: build
     services:
         -   name: docker:dind
     script:
-        - docker-compose -f docker-compose-test.yml build --no-cache arete-test
-        - docker-compose -f docker-compose-test.yml run arete-test
+        - docker-compose -f docker-compose-build.yml build --no-cache arete_integration_tests
+        - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        - docker tag arete_integration_tests $DOCKER_USER/arete_integration_tests:$CI_COMMIT_REF_NAME
+        - docker push $DOCKER_USER/arete_integration_tests:$CI_COMMIT_REF_NAME
+    only:
+        - dev
+        - master
+
+
+run-tests:
+    tags:
+        - tester
+    image: docker:latest
+    stage: deploy
+    services:
+        -   name: docker:dind
+    script:
+        - docker run -e ARETE_TOKEN=$ARETE_TOKEN $DOCKER_USER/arete_integration_tests:$CI_COMMIT_REF_NAME
     only:
         - dev
         - master

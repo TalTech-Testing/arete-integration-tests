@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+
+    arete_integration_tests:
+        container_name: arete_integration_tests
+        build:
+            context: .
