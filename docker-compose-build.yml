@@ -3,7 +3,7 @@ version: '3.4'
 services:
 
     arete_integration_tests:
-        image: ${DOCKER_USER}/arete_integration_tests:latest
+        image: arete_integration_tests
         container_name: arete_integration_tests
         build:
             context: .
