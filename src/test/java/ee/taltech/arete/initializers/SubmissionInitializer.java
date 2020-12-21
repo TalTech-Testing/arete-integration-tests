@@ -112,6 +112,20 @@ public class SubmissionInitializer {
 	}
 
 	@SneakyThrows
+	public static AreteRequestDTO getSubmissionPythonSendFiles() {
+		String hash = "9ba82b60211f3516f043b6338cb69df6de8bb26c";
+		return AreteRequestDTO.builder()
+				.uniid(UNIID_GIT)
+				.gitStudentRepo(STUDENT_REPO_PYTHON_2020)
+				.gitTestRepo(TESTER_REPO_PYTHON_2020)
+				.testingPlatform(TESTING_PLATFORM_PYTHON)
+				.hash(hash)
+				.dockerExtra(EXTRA + ",sendFiles")
+				.systemExtra((new HashSet<>(Arrays.asList("integration_tests", "noMail"))))
+				.build();
+	}
+
+	@SneakyThrows
 	public static AreteRequestDTO getSubmissionPythonFiles() {
 		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 		return AreteRequestDTO.builder()

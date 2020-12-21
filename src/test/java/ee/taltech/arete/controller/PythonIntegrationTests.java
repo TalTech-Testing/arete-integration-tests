@@ -33,6 +33,18 @@ public class PythonIntegrationTests {
 	}
 
 	@Test
+	public void testSendingFilesToStudent() {
+		AreteRequestDTO payload = getSubmissionPythonSendFiles();
+
+		AreteResponseDTO response = areteService.makeRequestSync(payload);
+
+		assertFullSubmission(response);
+		assertEquals(3, response.getTotalCount());
+		assertEquals(3, response.getTotalPassedCount());
+	}
+
+
+	@Test
 	public void testNoFiles() {
 		AreteRequestDTO payload = getSubmissionPythonFiles();
 		payload.getSystemExtra().add("noFiles");
